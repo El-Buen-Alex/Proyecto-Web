@@ -727,7 +727,7 @@ div.producto:hover {
   z-index: 5;
 }
 
-.signin-signupform {
+.signin-signup form {
   display: flex;
   align-items: center;
   justify-content: center;
