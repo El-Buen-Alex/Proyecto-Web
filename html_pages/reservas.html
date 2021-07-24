@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Reservas disponibles">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estilos.css" type="text/css">
+    <title>Pizza Mellisos | Reservas</title>
+</head>
+
+<body>
+    <header>
+        <nav class="menu orange">
+            <div class="nav_logo">
+                <img style="width:190px; height: 150px;" src="../resources/logo.png" alt="logo">
+                <h1 class="celular">0980856681</h1>
+            </div>
+
+            <div class="nav_enlaces">
+                <a class="enlace" href="index.html">Inicio |</a>
+                <a class="enlace" href="#">Info Mellisos |</a>
+                <a class="enlace" href="menu.html">Menú |</a>
+                <a class="enlace" href="ofertas.html">Ofertas |</a>
+                <a class="enlace" href="#">Locales |</a>
+                <a class="enlace" href="reservas.html">Reservas</a>
+            </div>
+
+            <div class="nav_botones">
+                <a class="botonesInicio" href="#">Registrarme</a>
+                <a class="botonesInicio" href="#">Iniciar Sesión</a>
+            </div>
+        </nav>
+
+        <div class="online orange" style="height: 170px;">
+            <p class="pedidos">Ordena Online</p>
+            <br><br><a class="botonesInicio" href="#">Clic Aquí</a>
+        </div>
+    </header>
+
+    <div>
+        <div class="titulo informacion">
+            <p>Reserva una mesa</p>
+            <p>o Llama al</p>
+            <p>0991719616</p>
+        </div>
+    </div>
+    <main>
+        <div class="formulario">
+            <form name="formulario-js" class="formulario-js" id="formulario-js"
+                onsubmit="return validarFormulario(this)">
+                <div class="nombre" id="nombre">
+                    <label>Ingrese Nombre*:</label>
+                    <input type="text" name="nombreCliente" id="nombreCliente" class="formulario-grupo-input" required>
+                    <p class="formulario-error">Formato de nombre Incorrecto, solo ingrese letras</p>
+
+                </div>
+                <div class="apellido" id="apellido">
+                    <label>Ingrese Apellido*:</label>
+                    <input type="text" name="apellidoCliente" id="apellidoCliente" class="formulario-grupo-input"
+                        required>
+                    <p class="formulario-error">Formato de apellido Incorrecto, solo ingrese letras</p>
+                </div>
+                <div class="telefono" id="telefono">
+                    <label>Ingrese Número de teléfono*:</label>
+                    <input type="text" name="telefonoCliente" id="telefonoCliente" class="formulario-grupo-input"
+                        required>
+                    <p class="formulario-error">Formato de telefono Incorrecto, solo ingrese numero</p>
+                </div>
+                <div class="email" id="email">
+                    <label>Ingrese E-mail*:</label>
+                    <input type="email" name="emailCliente" id="emailCliente" class="formulario-grupo-input" required>
+                    <p class="formulario-error">Formato de email Incorrecto</p>
+                </div>
+                <div class="diaReserva" id="diaReserva">
+                    <label>Escoger la fecha para su reserva*:</label>
+                    <input type="date" name="reservaCliente" id="fechaCliente" class="formulario-grupo-input" required>
+                    <p class="formulario-error">Debe escoger fecha posterior a la actual para reservar.</p>
+                </div>
+                <div class="horaReserva" id="horaReserva">
+                    <label>Escoger la hora para su reserva*:</label>
+                    <input type="time" name="reservaHoraCliente" id="horaCliente" class="formulario-grupo-input"
+                        required>
+                    <p class="formulario-error">El horario de atención es de 10:30 hasta las 20:30.</p>
+                </div>
+                <div class="mesaReserva" id="mesaReserva">
+                    <label>¿Mesa para cuántos?*:</label>
+                    <input type="number" name="mesaCliente" id="mesaCliente" class="formulario-grupo-input" required>
+                    <p class="formulario-error">Ingrese Números del 1 al 10 para reservar su mesa</p>
+                </div>
+                <div>
+                    <label id="establecimiento">Establecimientos:</label><br>
+                    <div>
+                        <input type="radio" name="lugar" value="matriz"> <span>Matriz: Guayaquil. Francisco Segura entre
+                            Tulcan y los Rios.</span>
+
+                        <br><br>
+                        <input type="radio" name="lugar" value="sucursal">
+                        <span>Sucursal: Guayaquil. 11Ava entre 4
+                            Noviembre y Chembers.</span>
+
+                        <br>
+                    </div>
+                </div>
+                    <div class="botones">
+                        <button class="button" type="submit">Reservar Mesa </button>
+                    </div>
+            </form>
+
+        </div>
+    </main>
+    <div class="space">
+        <br>
+    </div>
+    <footer style="width: 100%;">
+        <div class="footer_principal">
+            <div class="logo">
+                <div style="text-align:center;">
+                    <img style="width:190px; height: 150px;" src="../resources/logo.png" alt="logo">
+                </div>
+
+                <nav>
+                    <div class="nav_enlaces_pie">
+                        <div style="text-align:center;">
+                            <a class="enlace" href="menu.html">Menú |</a>
+                            <a class="enlace" href="ofertas.html">Ofertas |</a>
+                            <a class="enlace" href="reservas.html">Reservas |</a>
+                            <a class="enlace" href="comentarios.html">Preguntas Frecuentes y Comunidad </a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="redes" style="margin-top: 30px; margin-bottom: 30px;">
+                    <div style="text-align: center;">
+                        <a href="https://www.facebook.com/103811911672196/posts/183902546996465/?sfnsn=mo"
+                            target="_blank"><img style="width:40px; height: 40px;" src="../resources/rs_facebook.png"
+                                alt="Facebook"></a>
+
+                        <a href="https://instagram.com/pizzamellisos?utm_medium=copy_link" target="_blank"><img
+                                style="width:40px; height: 40px;" src="../resources/rs_instagram.png"
+                                alt="Instragram"></a>
+
+                        <a href=" https://twitter.com/PMellisos?s=08" target="_blank"><img
+                                style="width:40px; height: 40px;" src="../resources/rs_twitter.png" alt="Twitter"></a>
+
+                        <a href="https://www.youtube.com/watch?v=vqeglXJlgJE&ab_channel=BienTasty" target="_blank"><img
+                                style="width:40px; height: 40px;" src="../resources/rs_youtube.png" alt="Youtube"></a>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="mellisos">
+                    <p> © 2021 PIZZA MELLISOS </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/formulario.js">
+    </script>
+</body>
+
+</html>
