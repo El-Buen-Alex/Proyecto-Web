@@ -1,0 +1,229 @@
+<!-- Bryan Tacuri -->
+<!-- Sección Localidades -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estilos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Localidades</title>
+
+</head>
+
+<body>
+
+    <header>
+        <div id="nav-placeholder1"> </div>
+        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script>$.get("header.html", function (data) {
+                $("#nav-placeholder1").replaceWith(data);
+            });</script>
+    </header>
+
+    <main>
+        <section>
+            <div class="contenedorLocalidades">
+                <div class="banner_title animate__animated animate__backInLeft">
+                    <h1>Conoce acerca <br> de nuestros establecimientos</h1>
+                </div>
+                <div>
+                    <img class="imgLocalidad banner_img" src="../resources/localidad1.png" alt="Local">
+                </div>
+            </div>
+            <div style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                    style="height: 100%; width: 100%;">
+                    <path d="M-3.94,109.03 C212.75,193.91 451.46,9.38 528.21,120.88 L524.26,184.03 L-5.07,171.20 Z"
+                        style="stroke: none; fill: #f37335;"></path>
+                </svg></div>
+        </section>
+
+        <section class="contenedorSection" style="background-color: #f37335">
+            <h2 class="nombrePrincipalEstablecimiento wow animate__animated animate__zoomIn"> Matriz</h2>
+            <div class="contenedorLocalidades">
+                <div>
+                    <img class="transicion1 imgLocalidad" src="../resources/local1.jpeg" alt="">
+                </div>
+                <div class="contenedorTextoLocalidad">
+                    <p class="wow animate__animated animate__lightSpeedInRight">
+                        <strong>Dirección:</strong>
+                        <br>
+                        Guayaquil. Francisco Segura entre Tulcan y los Rios.
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.8326134738218!2d-79.90569108525956!3d-2.216724598384264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d6ffd209796c1%3A0xdb5ed4edd008c039!2sPizza%20Mellisos!5e0!3m2!1ses!2sec!4v1626313310260!5m2!1ses!2sec"
+                            width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </p>
+                    <p>
+                        <strong>Horario de atención:</strong>
+                        <br>
+                        Lunes a Domingo: 16h00 a 23h00.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="contenedorSection">
+            <h2 class="nombrePrincipalEstablecimiento wow animate__animated animate__zoomIn">Sucursal</h2>
+            <div class="contenedorLocalidades">
+                <div>
+                    <img class="transicion1 imgLocalidad" src="../resources/local1.jpeg" alt="">
+                </div>
+                <div class="contenedorTextoLocalidad">
+                    <p class="wow animate__animated animate__lightSpeedInLeft">
+                        <strong>Dirección:</strong>
+                        <br>
+                        Guayaquil. 11Ava entre 4 Noviembre y Chembers.
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63791.00389390829!2d-79.93038426548821!3d-2.1773434809944012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d6f211cd5fe51%3A0x274bf05ce656a94d!2sMellisos%20Pizza!5e0!3m2!1ses!2sec!4v1626323102277!5m2!1ses!2sec"
+                            width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </p>
+                    <p>
+                        <strong>Horario de atención:</strong>
+                        <br>
+                        Lunes a Domingo: 16h00 a 22h00.
+                    </p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <section class="contenedorSection2" style="background-color: #f37335">
+            <h2 class="pregunta wow animate__animated animate__jackInTheBox">¿Quieres una establecimiento en otro lugar?
+            </h2>
+            <h3 class="pregunta wow animate__animated animate__bounceIn" data-wow-duration="2s" data-wow-delay=".5s">
+                Cuentanos donde:</h3>
+            <div class="flexContent">
+                <form class="formLocal" id="form">
+                    <h3 style="color: #b36105;">Ingrese la localidad:</h3>
+                    <div class="posicionamietoForm">
+                        <div class="contenedorSeccionEncuesta">
+                            <div class="grupo formulario__grupo" id="grupo__nombre">
+                                <label class="labelForm formulario__label">Nombre</label>
+                                <div class="formulario__grupo-input">
+                                    <input class=" formulario__input" name="nombre" required> <span
+                                        class="barra"></span>
+                                    <i class="formulario__validacion-estado fas fa-times-circle"> </i>
+                                </div>
+                                <p class="formulario__input-error">El nombre solo puede contener letras.</p>
+                            </div>
+
+                            <div class="grupo formulario_grupo">
+                                <label class="labelForm formulario__label">Provincia</label>
+                                <br>
+                                <br>
+                                <select class="comentario" style="color: #5e5d5d;" name="provincias">
+                                    <option disabled="" selected>Selecciona una provincia</option>
+                                    <option value="Value 1">Azuay</option>
+                                    <option value="Value 2">Bolívar</option>
+                                    <option value="Value 3">Cañar</option>
+                                    <option value="Value 4">Carchi</option>
+                                    <option value="Value 5">Chimborazo</option>
+                                    <option value="Value 6">Cotopaxi</option>
+                                    <option value="Value 7">El Oro</option>
+                                    <option value="Value 8">Esmeraldas</option>
+                                    <option value="Value 9">Gálapagos</option>
+                                    <option value="Value 10">Guayas</option>
+                                    <option value="Value 11">Imbabura</option>
+                                    <option value="Value 12">Loja</option>
+                                    <option value="Value 13">Los Rios</option>
+                                    <option value="Value 14">Manabí</option>
+                                    <option value="Value 15">Morona Santiago</option>
+                                    <option value="Value 16">Napo</option>
+                                    <option value="Value 17">Orellana</option>
+                                    <option value="Value 18">Pastaza</option>
+                                    <option value="Value 19">Pichincha</option>
+                                    <option value="Value 20">Santa Elena</option>
+                                    <option value="Value 21">Santo Domingo de los Tsáchilas</option>
+                                    <option value="Value 22">Sucumbíos</option>
+                                    <option value="Value 23">Tungurahua</option>
+                                    <option value="Value 24">Zamora Chinchipe</option>
+                                </select>
+
+                            </div>
+
+                            <div class="grupo formulario__grupo" id="grupo__ciudad">
+                                <label class="labelForm validacion formulario__label">Ciudad</label>
+                                <div class="formulario__grupo-input">
+                                    <input class="formulario__input" name="ciudad" required> <span class="barra"></span>
+                                    <i class="formulario__validacion-estado fas fa-times-circle"> </i>
+                                </div>
+                                <p class="formulario__input-error">El ciudad solo puede contener letras.</p>
+                            </div>
+                        </div>
+
+                        <div class="contenedorSeccionEncuesta">
+
+                            <div class="grupo formulario__grupo" id="grupo__direccion">
+                                <label class="noVacio labelForm formulario__label">Dirección</label>
+                                <div class="formulario__grupo-input">
+                                    <input class="elementoFormulario formulario__input" name="direccion" required> <span
+                                        class="barra"></span>
+                                </div>
+                            </div>
+
+                            <div class="grupo formulario__grupo" id="grupo__exp">
+                                <label class="labelForm formulario__label" style="padding-top: 10px; ">¿Por que debería
+                                    existir un
+                                    establecimiento en esta ubicación?</label>
+                                <br>
+                                <div class="formulario__grupo-input">
+                                    <textarea class=" formulario__input" style="resize: none;margin-top: 30px;"
+                                        required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="grupo formulario_grupo">
+                                <label class="labelForm formulario__label">Elija un tipo de establecimiento:</label>
+                                <br> <br>
+                                <label class="container1">Local
+                                    <input type="radio" checked="checked" name="radio">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="container1">Sucursal
+                                    <input type="radio" name="radio">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formulario__mensaje" id="formulario__mensaje">
+                        <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario
+                            correctamente. </p>
+                    </div>
+
+                    <div class="formulario__grupo formulario__grupo-btn-enviar">
+                        <button type="submit" class="formulario__btn fondo">Enviar</button>
+                        <p style="color:yellowgreen;" class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado
+                            exitosamente!</p>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div id="nav-placeholder2"> </div>
+
+        <script src="//code.jquery.com/jquery.min.js"></script>
+
+        <script>$.get("footer.html", function (data) {
+                $("#nav-placeholder2").replaceWith(data);
+            });</script>
+    </footer>
+    <script src="../html_pages/js/wow.min.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <script src="../html_pages/js/validacionFormLocal_Cuenta.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</body>
+
+</html>

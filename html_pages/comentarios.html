@@ -1,0 +1,359 @@
+<!-- Daniel Pincay -->
+<!-- Sección Comentarios -->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Resuelve tus dudas junto a la comunidad">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estilos.css" type="text/css">
+    <title>Pizza Mellisos | Comunidad</title>
+
+    <script>
+        const expresiones = {
+            correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+        }
+        function validar(element, id) {
+            let respuesta = true;
+            const elementoChao = document.getElementById("error" + id);
+            if (elementoChao !== null) {
+
+                element.parentNode.lastElementChild.remove();
+            }
+            if (element.id === "nombre" || element.id === "tema") {
+                if (element.value.length < 4) {
+                    const span = contruirSpanError(element);
+                    span.innerHTML = "El " + element.id + " debe tener 4 letras";
+                    span.setAttribute("id", "error" + id);
+                    respuesta = false
+                }
+            } else if (element.id === "email") {
+                if (!expresiones.correo.test(element.value)) {
+                    const span = contruirSpanError(element);
+                    span.innerHTML = "El " + element.id + " debe tener formato 'example@gmail.com'";
+                    span.setAttribute("id", "error" + id);
+                    respuesta = false
+                }
+            } else if (element.id === "fechaNac") {
+                if (calcularEdad(element.value) < 18) {
+                    const span = contruirSpanError(element);
+                    span.innerHTML = "Debes tener 18 años para comentar";
+                    span.setAttribute("id", "error" + id);
+                    respuesta = false
+                }
+            }
+            return respuesta;
+        }
+        function validarFormulario() {
+            const elementosFormulario = document.querySelectorAll(" .comentario");
+            let estado = true;
+            elementosFormulario.forEach((elemento) => {
+                estado = validar(elemento, elemento.id);
+                if (!estado) {
+                    return;
+                }
+            })
+            if (estado) {
+                agregarComentario();
+            }
+        }
+
+        function contruirSpanError(element) {
+            const padre = element.parentNode;
+            const span = document.createElement("span");
+            span.setAttribute("class", "error");
+            padre.appendChild(span);
+            return span;
+        }
+
+        function controlarCategorias(categoriaSelected) {
+            cons = categoriaSelected;
+            const listaCategoriast = document.querySelectorAll("#contenedorCategorias .categoria");
+            const listaPreguntas = document.querySelectorAll(".preguntasFrecuentes")
+            listaCategoriast.forEach((element) => {
+                element.classList.remove('activa');
+            });
+            categoriaSelected.classList.toggle('activa');
+            //para activar preguntas
+            const datSetCategoriaAct = categoriaSelected.dataset.categoria;
+            listaPreguntas.forEach((pregunta) => {
+                if (pregunta.dataset.categoria === datSetCategoriaAct) {
+                    pregunta.classList.add('activo');
+                } else {
+                    pregunta.classList.remove('activo');
+                }
+            });
+        }
+        function mostrarComentario(preguntaSelected) {
+            const parrafoSelected = document.getElementById(preguntaSelected.id).lastElementChild;
+            preguntaSelected.classList.toggle('activa');
+            const alturaRealParrafoSelected = parrafoSelected.scrollHeight;
+            if (!parrafoSelected.style.maxHeight) {
+                //si no tenemos max heigh damos un valor
+                parrafoSelected.style.maxHeight = alturaRealParrafoSelected + "px";
+            } else {
+                parrafoSelected.style.maxHeight = null;
+            }
+        }
+        function agregarComentario(evento) {
+            const listaCampos = document.querySelectorAll(" .comentario");
+            construirCuerpoComentario(listaCampos);
+            document.getElementById("form").reset();
+            controlarCategorias(document.getElementById("comunidadId"))
+            mostrarComentario(document.getElementById("comunidadCm").lastElementChild);
+        }
+        function construirCuerpoComentario(listaCampos) {
+            const divContenedor = document.getElementById("comunidadCm");
+            //crear div pregunta comunidad
+            const divPrincipalPregFrecComunidad = document.createElement("div");
+            divPrincipalPregFrecComunidad.setAttribute("class", "preguntaFrecuente");
+            divPrincipalPregFrecComunidad.setAttribute("id", "preg-" + listaCampos[3].value + listaCampos[0].value);
+            divPrincipalPregFrecComunidad.setAttribute("onclick", "mostrarComentario(this)");
+            //crear div header
+            const divHeaderPregComunidad = document.createElement("div");
+            divHeaderPregComunidad.setAttribute("class", "headerComentarioComunidad");
+            //creando elementos del header del comentario
+            //titulo del comentario
+            const titulo = document.createElement("h3");
+            titulo.setAttribute("class", "tituloComentarioComunidad");
+            titulo.innerHTML = listaCampos[3].value;
+            // span para ubicar el autor y edad
+            const autor = document.createElement("span");
+            autor.setAttribute("class", "autorComentario");
+            autor.innerHTML = "-" + listaCampos[0].value;
+
+            const edad = document.createElement("span");
+            edad.setAttribute("class", "edad");
+            edad.innerHTML = "--" + calcularEdad(listaCampos[5].value) + " años";
+            autor.appendChild(edad);
+            //creando boton cerrar
+            const botonCerrar = document.createElement("img");
+            botonCerrar.setAttribute("class", "cerrar");
+            botonCerrar.setAttribute("src", "../resources/masCerrar.png");
+            botonCerrar.setAttribute("alt", "cerrar");
+            //creando parrafo para descripcion del comentario o duda
+            //parrafo
+            const parrafo = document.createElement("p");
+            parrafo.setAttribute("class", "parrafoComentario");
+            //comentario
+            const espacio = document.createElement("br");
+            const correo = document.createElement("span");
+            correo.innerHTML = listaCampos[2].value;
+            correo.setAttribute("class", "correo");
+
+            //construccion del comentario
+            //parrafo descripcion
+            parrafo.appendChild(correo);
+            parrafo.appendChild(espacio);
+            parrafo.innerHTML += listaCampos[4].value;
+
+            //header de la pregunta
+            divHeaderPregComunidad.appendChild(titulo);
+            divHeaderPregComunidad.appendChild(autor);
+            divHeaderPregComunidad.appendChild(botonCerrar);
+
+            //contenedor de la nueva pregunta o comentario
+            divPrincipalPregFrecComunidad.appendChild(divHeaderPregComunidad);
+            divPrincipalPregFrecComunidad.appendChild(parrafo);
+
+            divContenedor.appendChild(divPrincipalPregFrecComunidad);
+            console.log(divContenedor);
+        }
+        function calcularEdad(fecha) {
+            const hoy = new Date();
+            const fechaNac = new Date(fecha);
+            let edad = hoy.getFullYear() - fechaNac.getFullYear();
+            const mes = hoy.getMonth() - fechaNac.getMonth();
+            if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
+                edad--;
+            }
+            return edad;
+        }
+    </script>
+</head>
+
+<body class="fondoNegro">
+
+    <header style="margin: 0%;">
+        <div id="nav-placeholder1"> </div>
+
+        <script src="//code.jquery.com/jquery.min.js"></script>
+
+        <script>$.get("header.html", function (data) {
+                $("#nav-placeholder1").replaceWith(data);
+            });</script>s
+
+    </header>
+
+    <div class="tituloPagina centrar" style="margin: 5%;">
+        <h1 class="tituloPrincipal">Preguntas frecuentes y Comunidad</h1>
+    </div>
+    <main class="seccionComentario" style="margin: 5%;">
+        <aside class="formularioIzq centrar">
+            <form class="elementoFormulario formComentario" id="form">
+                <div class="form elementoFormulario">
+                    <h3 class="elementoFormulario">¿No encuentras tu pregunta?</h3>
+                    <br>
+                    <p class="elementoFormulario">Añade tu pregunta aquí y <br> será contestada por nuestro
+                        administrador.</p>
+                    <div class="grupo elementoFormulario">
+                        <input class="elementoFormulario comentario" onkeyup="validar(this, this.id)" type="text"
+                            id="nombre" required> <span class="barra"></span>
+                        <label class="lblComentario">Nombre de usuario</label>
+                    </div>
+                    <div class="grupo elementoFormulario">
+                        <input class="elementoFormulario comentario" type="text" id="direccion" required> <span
+                            class="barra"></span>
+                        <label class="lblComentario">Dirección</label>
+                    </div>
+
+                    <div class="grupo elementoFormulario">
+                        <input class="elementoFormulario comentario" onkeyup="validar(this, this.id)" type="email"
+                            id="email" required> <span class="barra"></span>
+                        <label class="lblComentario">E-mail</label>
+                    </div>
+                    <div class="grupo elementoFormulario">
+                        <input class="elementoFormulario comentario" onkeyup="validar(this, this.id)" type="text"
+                            id="tema" required> <span class="barra"></span>
+                        <label class="lblComentario">Tema required</label>
+                    </div>
+                    <div class="grupo elementoFormulario">
+                        <textarea class="elementoFormulario comentario" style="resize: none;margin-top: -10px;"
+                            id="descripcion" required></textarea>
+                        <label class="lblComentario" style="padding-top: 10px; ">Descripción</label>
+                    </div>
+                    <div class="grupo elementoFormulario">
+                        <input class="elementoFormulario comentario" onchange="validar(this, this.id)" type="date"
+                            id="fechaNac" required> <span class="barra"></span>
+                        <label class="lblComentario" style="top:-14px;">Fecha-nacimiento</label>
+                    </div>
+                    <button class="elementoFormulario boton fondo" type="button" onclick="validarFormulario()"
+                        style="margin-top:52px;"> Enviar</button>
+                </div>
+            </form>
+        </aside>
+
+        <article id="seccionComentario">
+            <!-- categorias -->
+            <div class="categorias" id="contenedorCategorias">
+                <div class="categoria activa" onclick="controlarCategorias(this)" data-categoria="entrega">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                        <path
+                            d="M7 24h-5v-9h5v1.735c.638-.198 1.322-.495 1.765-.689.642-.28 1.259-.417 1.887-.417 1.214 0 2.205.499 4.303 1.205.64.214 1.076.716 1.175 1.306 1.124-.863 2.92-2.257 2.937-2.27.357-.284.773-.434 1.2-.434.952 0 1.751.763 1.751 1.708 0 .49-.219.977-.627 1.356-1.378 1.28-2.445 2.233-3.387 3.074-.56.501-1.066.952-1.548 1.393-.749.687-1.518 1.006-2.421 1.006-.405 0-.832-.065-1.308-.2-2.773-.783-4.484-1.036-5.727-1.105v1.332zm-1-8h-3v7h3v-7zm1 5.664c2.092.118 4.405.696 5.999 1.147.817.231 1.761.354 2.782-.581 1.279-1.172 2.722-2.413 4.929-4.463.824-.765-.178-1.783-1.022-1.113 0 0-2.961 2.299-3.689 2.843-.379.285-.695.519-1.148.519-.107 0-.223-.013-.349-.042-.655-.151-1.883-.425-2.755-.701-.575-.183-.371-.993.268-.858.447.093 1.594.35 2.201.52 1.017.281 1.276-.867.422-1.152-.562-.19-.537-.198-1.889-.665-1.301-.451-2.214-.753-3.585-.156-.639.278-1.432.616-2.164.814v3.888zm3.79-19.913l3.21-1.751 7 3.86v7.677l-7 3.735-7-3.735v-7.719l3.784-2.064.002-.005.004.002zm2.71 6.015l-5.5-2.864v6.035l5.5 2.935v-6.106zm1 .001v6.105l5.5-2.935v-6l-5.5 2.83zm1.77-2.035l-5.47-2.848-2.202 1.202 5.404 2.813 2.268-1.167zm-4.412-3.425l5.501 2.864 2.042-1.051-5.404-2.979-2.139 1.166z" />
+                    </svg>
+                    <p>Entrega</p>
+                </div>
+                <div class="categoria" onclick="controlarCategorias(this)" data-categoria="metodosPago">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                        <path
+                            d="M21.19 7h2.81v15h-21v-5h-2.81v-15h21v5zm1.81 1h-19v13h19v-13zm-9.5 1c3.036 0 5.5 2.464 5.5 5.5s-2.464 5.5-5.5 5.5-5.5-2.464-5.5-5.5 2.464-5.5 5.5-5.5zm0 1c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm.5 8h-1v-.804c-.767-.16-1.478-.689-1.478-1.704h1.022c0 .591.326.886.978.886.817 0 1.327-.915-.167-1.439-.768-.27-1.68-.676-1.68-1.693 0-.796.573-1.297 1.325-1.448v-.798h1v.806c.704.161 1.313.673 1.313 1.598h-1.018c0-.788-.727-.776-.815-.776-.55 0-.787.291-.787.622 0 .247.134.497.957.768 1.056.344 1.663.845 1.663 1.746 0 .651-.376 1.288-1.313 1.448v.788zm6.19-11v-4h-19v13h1.81v-9h17.19z" />
+                    </svg>
+                    <p>Métodos de Pago</p>
+                </div>
+                <div class="categoria" onclick="controlarCategorias(this)" id="comunidadId" data-categoria="comunidad">
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m458.414062 390.710938c7.546876-8.828126 12.117188-20.273438 12.117188-32.773438v-5.40625c0-27.863281-22.667969-50.53125-50.53125-50.53125s-50.53125 22.667969-50.53125 50.53125v5.40625c0 12.5 4.570312 23.945312 12.117188 32.773438-18.472657 4.753906-34.0625 16.742187-43.585938 32.746093-9.523438-16.003906-25.113281-27.992187-43.585938-32.746093 7.546876-8.828126 12.117188-20.273438 12.117188-32.773438v-5.40625c0-27.863281-22.667969-50.53125-50.53125-50.53125s-50.53125 22.667969-50.53125 50.53125v5.40625c0 12.5 4.570312 23.945312 12.117188 32.773438-18.472657 4.753906-34.0625 16.742187-43.585938 32.746093-9.523438-16.003906-25.113281-27.992187-43.585938-32.746093 7.546876-8.828126 12.117188-20.273438 12.117188-32.773438v-5.40625c0-27.863281-22.667969-50.53125-50.53125-50.53125s-50.53125 22.667969-50.53125 50.53125v5.40625c0 12.5 4.570312 23.945312 12.117188 32.773438-30.777344 7.921874-53.585938 35.90625-53.585938 69.121093v42.167969c0 5.523438 4.476562 10 10 10h492c5.523438 0 10-4.476562 10-10v-42.167969c0-33.214843-22.808594-61.199219-53.585938-69.121093zm-68.945312-38.179688c0-16.835938 13.695312-30.53125 30.53125-30.53125s30.53125 13.695312 30.53125 30.53125v5.40625c0 16.835938-13.695312 30.53125-30.53125 30.53125s-30.53125-13.695312-30.53125-30.53125zm-164 0c0-16.835938 13.695312-30.53125 30.53125-30.53125s30.53125 13.695312 30.53125 30.53125v5.40625c0 16.835938-13.695312 30.53125-30.53125 30.53125s-30.53125-13.695312-30.53125-30.53125zm-164 0c0-16.835938 13.695312-30.53125 30.53125-30.53125s30.53125 13.695312 30.53125 30.53125v5.40625c0 16.835938-13.695312 30.53125-30.53125 30.53125s-30.53125-13.695312-30.53125-30.53125zm-41.46875 107.300781c0-28.320312 23.039062-51.363281 51.363281-51.363281h41.273438c28.320312 0 51.363281 23.042969 51.363281 51.363281v32.167969h-144zm164 0c0-28.320312 23.039062-51.363281 51.363281-51.363281h41.273438c28.320312 0 51.363281 23.042969 51.363281 51.363281v32.167969h-144zm308 32.167969h-144v-32.167969c0-28.320312 23.039062-51.363281 51.363281-51.363281h41.273438c28.320312 0 51.363281 23.042969 51.363281 51.363281zm0 0" />
+                        <path
+                            d="m77.339844 200.585938-.089844 55.523437c-.007812 3.867187 2.21875 7.394531 5.710938 9.050781 1.367187.648438 2.832031.96875 4.285156.96875 2.269531 0 4.515625-.773437 6.335937-2.265625l56.488281-46.234375h62.492188l35.75 44.738282c1.953125 2.445312 4.949219 3.851562 8.066406 3.753906 3.128906-.078125 6.039063-1.617188 7.863282-4.15625l31.882812-44.339844h66.207031l56.230469 46.226562c2.988281 2.457032 7.125 2.96875 10.621094 1.316407 3.5-1.652344 5.730468-5.175781 5.730468-9.042969v-55.699219c31.035157-19.9375 50.085938-54.511719 50.085938-91.613281 0-60-48.8125-108.8125-108.8125-108.8125h-240.375c-60 0-108.8125 48.8125-108.8125 108.8125 0 37.226562 19.144531 71.863281 50.339844 91.773438zm58.472656-180.585938h240.375c48.972656 0 88.8125 39.84375 88.8125 88.8125 0 31.898438-17.253906 61.507812-45.023438 77.285156-3.128906 1.773438-5.0625 5.09375-5.0625 8.691406v40.171876l-42.652343-35.058594c-1.789063-1.472656-4.03125-2.277344-6.347657-2.277344h-74.914062c-3.21875 0-6.238281 1.550781-8.117188 4.164062l-27.175781 37.789063-30.519531-38.195313c-1.898438-2.375-4.773438-3.757812-7.8125-3.757812h-70.875c-2.308594 0-4.546875.800781-6.335938 2.261719l-42.878906 35.101562.0625-40.035156c.007813-3.617187-1.9375-6.953125-5.085937-8.726563-27.917969-15.742187-45.261719-45.40625-45.261719-77.414062 0-48.96875 39.839844-88.8125 88.8125-88.8125zm0 0" />
+                        <path
+                            d="m376.1875 60h.335938.039062c5.503906 0 9.980469-4.449219 10-9.960938.023438-5.523437-4.4375-10.015624-9.960938-10.039062h-.414062c-5.523438 0-10 4.476562-10 10s4.476562 10 10 10zm0 0" />
+                        <path
+                            d="m408.25 72.042969c10.644531 9.296875 16.75 22.699219 16.75 36.769531 0 13.324219-5.292969 25.777344-14.902344 35.074219-3.96875 3.839843-4.074218 10.167969-.238281 14.140625 1.964844 2.027344 4.574219 3.046875 7.191406 3.046875 2.503907 0 5.007813-.933594 6.949219-2.8125 13.542969-13.097657 21-30.65625 21-49.449219 0-19.847656-8.601562-38.742188-23.59375-51.835938-4.160156-3.632812-10.476562-3.203124-14.109375.957032s-3.207031 10.476562.953125 14.109375zm0 0" />
+                        <path
+                            d="m225.261719 140.265625c12.441406 11.511719 24.726562 19.898437 25.242187 20.25 1.695313 1.15625 3.660156 1.730469 5.625 1.730469 1.960938 0 3.925782-.578125 5.621094-1.730469.515625-.351563 12.800781-8.738281 25.242188-20.25 18.363281-16.984375 27.285156-31.5 27.285156-44.367187 0-22.339844-16.996094-40.515626-37.890625-40.515626-7.214844 0-14.25 2.222657-20.257813 6.28125-6.015625-4.058593-13.046875-6.28125-20.261718-6.28125-20.894532 0-37.890626 18.171876-37.890626 40.515626 0 12.867187 8.921876 27.378906 27.285157 44.367187zm10.605469-64.882813c4.792968 0 9.300781 2.160157 12.695312 6.085938 1.902344 2.195312 4.660156 3.457031 7.566406 3.457031 2.902344 0 5.660156-1.261719 7.5625-3.457031 3.394532-3.925781 7.902344-6.085938 12.695313-6.085938 9.867187 0 17.890625 9.203126 17.890625 20.515626 0 11.1875-21.074219 31.363281-38.15625 44.070312-17.082032-12.691406-38.148438-32.851562-38.148438-44.070312.003906-11.3125 8.027344-20.515626 17.894532-20.515626zm0 0" />
+                    </svg>
+                    <p>Comunidad</p>
+                </div>
+            </div>
+            <!-- preguntas por categoria -->
+            <!-- primer categoria -->
+            <div class="preguntasFrecuentes activo" data-categoria="entrega">
+                <div class="preguntaFrecuente" id="primerPregunta" onclick="mostrarComentario(this)">
+                    <h3 class="tituloComentario">¿Cómo realizo un pedido? <img class="cerrar"
+                            src="../resources/masCerrar.png" alt="cerrar"></h3>
+                    <p class="parrafoComentario">Para poder realizar tu pedido debes ir al apartado <a
+                            href="menu.html">Menú</a> y una vez ahí
+                        podrás seleccionar el producto que desees y si lo deseas a domicilio o ir a recoger a nuestros
+                        locales.</p>
+                </div>
+                <div class="preguntaFrecuente" id="segundaPregunta" onclick="mostrarComentario(this)">
+                    <h3 class="tituloComentario">¿Cómo sé si el delivery llega a mi punto de ubicación? <img
+                            class="cerrar" src="../resources/masCerrar.png" alt="cerrar"></h3>
+                    <p class="parrafoComentario">Existen diferentes sucursales ubicados alrededor del pais, tu
+                        solicitud será redirigida al punto más cercano a ti. Luego, el delivery se pondrá en contacto
+                        para
+                        saber tu ubicación.
+                    </p>
+                </div>
+                <div class="preguntaFrecuente" id="tercerPregunta" onclick="mostrarComentario(this)">
+                    <h3 class="tituloComentario">¿Tiene un costo extra el servicio a domicilio?<img class="cerrar"
+                            src="../resources/masCerrar.png" alt="cerrar"></h3>
+                    <p class="parrafoComentario">No del todo. Si tu pedido supera los $25, el delivery irá hasta
+                        la puerta de tu hogar siempre que exista una ruta terrestre disponible, caso contrario el pago
+                        total será dado correspondiente al lugar en donde se ubique.
+                    </p>
+                </div>
+                <div class="preguntaFrecuente" id="cuartaPregunta" onclick="mostrarComentario(this)">
+                    <h3 class="tituloComentario">¿Cómo visualizo mi entrega?<img class="cerrar"
+                            src="../resources/masCerrar.png" alt="cerrar"></h3>
+                    <p class="parrafoComentario">Para poder realizar tu pedido debes ir al apartado <a
+                            href="menu.html">Menú</a> y una vez ahí
+                        podras monitorear el avance de tu pedido. ¡Sabemos que las ganas no esperan, pero vale la pena!.
+                    </p>
+                </div>
+            </div>
+            <!-- segunda categoria -->
+            <div class="preguntasFrecuentes" data-categoria="metodosPago">
+                <div class="preguntaFrecuente" id="primerPreguntaMP" onclick="mostrarComentario(this)">
+                    <h3 class="tituloComentario">¿Cómo puedo pagar un pedido? <img class="cerrar"
+                            src="../resources/masCerrar.png" alt="cerrar"></h3>
+                    <p class="parrafoComentario">Contamos con diferentes métodos de pago: Desde tarjetas de crédito,
+                        debito
+                        e incluso efecitivo si tu compra la realizas en uno de nuestros locales. *Aplica restricciones*.
+                    </p>
+                </div>
+                <div class="preguntaFrecuente" id="segundaPreguntaMP" onclick="mostrarComentario(this)">
+                    <h3 class="tituloComentario">¿Puedo pagar en efectivo pidiendo a domicilio?<img class="cerrar"
+                            src="../resources/masCerrar.png" alt="cerrar"></h3>
+                    <p class="parrafoComentario">Puedes pagar el 50% mediante tarjeta de crédito y el otro 50% con
+                        efectivo porque lastimosamente aún
+                        no tenemos disponible el pago del 100% con efectivo en el servicio a domicilio.</p>
+                </div>
+            </div>
+            <!-- comunidad -->
+            <div class="preguntasFrecuentes" data-categoria="comunidad" id="comunidadCm">
+                <div class="preguntaFrecuente" id="primerPreguntaCm" onclick="mostrarComentario(this)">
+                    <div class="headerComentarioComunidad">
+                        <h3 class="tituloComentarioComunidad">Mi entrega llegó 30 minutos tarde. </h3><span
+                            class="autorComentario">-Daniel <span class="edad"> --20 años</span></span><img
+                            class="cerrar" src="../resources/masCerrar.png" alt="cerrar">
+
+                    </div>
+                    <p class="parrafoComentario"><span class="correo"><br>alexispincay@gmail.com</span> <br> Estuve
+                        esperando por 30 minutos tarde mi entrega, estaba frustrado
+                        pero al llegar el delivery me contó lo sucedido, fue una sobrecarga de pedidos y me aseguró que
+                        era la primera vez que pasaba algo así. Al final fue buen
+                        servicio.
+                    </p>
+
+                </div>
+            </div>
+        </article>
+
+    </main>
+    <footer>
+        <div id="nav-placeholder"> </div>
+
+        <script src="//code.jquery.com/jquery.min.js"></script>
+
+        <script>$.get("footer.html", function (data) {
+                $("#nav-placeholder").replaceWith(data);
+            });</script>
+    </footer>
+</body>
+
+</html>
