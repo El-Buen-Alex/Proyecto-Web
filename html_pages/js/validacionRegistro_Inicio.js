@@ -19,9 +19,8 @@ const campos = {
   nombre2: false,
   correo2: false,
   telefono2: false,
-  password: false
+  password: false,
 };
-
 
 const validarFormulario = (e) => {
   switch (e.target.name) {
@@ -140,41 +139,46 @@ inputs.forEach((input) => {
 });
 
 inputs2.forEach((input) => {
-    input.addEventListener("keyup", validarFormulario);
-    input.addEventListener("blur", validarFormulario);
-  });
-
-  formulario2.addEventListener('submit', (e) => {
-	e.preventDefault();
-    if (campos.usuario2 && campos.nombre2 && campos.password2 && campos.correo2 && campos.telefono2){
-        formulario2.reset();
-        document
-            .getElementById("formulario__mensaje-exito2")
-            .classList.add("formulario__mensaje-exito-activo");
-        setTimeout(() => {
-            document
-                .getElementById("formulario__mensaje-exito2")
-                .classList.remove("formulario__mensaje-exito-activo");
-        }, 2000);
-
-        document
-            .querySelectorAll(".formulario__grupo-correcto2")
-            .forEach((icono) => {
-                icono.classList.remove("formulario__grupo-correcto");
-            });
-    } else {
-        document
-            .getElementById("formulario__mensaje2")
-            .classList.add("formulario__mensaje-activo");
-
-        setTimeout(() => {
-            document
-                .getElementById("formulario__mensaje2")
-                .classList.remove("formulario__mensaje-activo");
-        }, 3000);
-    }
+  input.addEventListener("keyup", validarFormulario);
+  input.addEventListener("blur", validarFormulario);
 });
-    
+
+formulario2.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (
+    campos.usuario2 &&
+    campos.nombre2 &&
+    campos.password2 &&
+    campos.correo2 &&
+    campos.telefono2
+  ) {
+    formulario2.reset();
+    document
+      .getElementById("formulario__mensaje-exito2")
+      .classList.add("formulario__mensaje-exito-activo");
+    setTimeout(() => {
+      document
+        .getElementById("formulario__mensaje-exito2")
+        .classList.remove("formulario__mensaje-exito-activo");
+    }, 2000);
+
+    document
+      .querySelectorAll(".formulario__grupo-correcto2")
+      .forEach((icono) => {
+        icono.classList.remove("formulario__grupo-correcto");
+      });
+  } else {
+    document
+      .getElementById("formulario__mensaje2")
+      .classList.add("formulario__mensaje-activo");
+
+    setTimeout(() => {
+      document
+        .getElementById("formulario__mensaje2")
+        .classList.remove("formulario__mensaje-activo");
+    }, 3000);
+  }
+});
 
 /* valida login */
 var botonInicia = document.getElementById("botonIniciar");
@@ -183,7 +187,7 @@ botonInicia.addEventListener("click", (e) => {
   // noVacio = document.getElementById(noVacio).value; (noVacio.length==0 || /ˆ\s+$/.test(noVacio)
   if (campos.usuario && campos.password) {
     formulario.reset();
-    window.open("index.html", "_self");
+    window.open("/index.html", "_self");
   } else {
     document
       .getElementById("formulario__mensaje")
@@ -196,5 +200,3 @@ botonInicia.addEventListener("click", (e) => {
     }, 3000);
   }
 });
-
-

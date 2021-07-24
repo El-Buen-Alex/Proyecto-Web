@@ -144,7 +144,7 @@ nav .enlace:hover {
   background-color: white;
 }
 
-.cuerpo {
+.cuerpoInfo {
   padding-top: 5%;
   padding-bottom: 5%;
   text-align: center;
@@ -165,7 +165,7 @@ nav .enlace:hover {
   margin-right: 50px;
 }
 
-.imagenes:hover {
+.imagenesInfo:hover {
   border: 2px solid #e86a38;
   width: 600px;
   height: 400px;
@@ -597,12 +597,10 @@ div.producto:hover {
 }
 
 .formLocal {
-  background: whitesmoke;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  width: 690px;
+  background-color: white;
+  border-radius: 3%;
+  padding: 2%;
+
 }
 
 .contenedorSeccionEncuesta {
@@ -729,7 +727,7 @@ div.producto:hover {
   z-index: 5;
 }
 
-form {
+.signin-signupform {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1269,3 +1267,117 @@ form.sign-in-form {
     left: 50%;
   }
 }
+
+/*Estilos */
+
+/*Ofertas*/
+.imagenes{
+  display: inline-block;
+  border: 2px solid rgba(185,185,185,.25);
+}
+.imagenes:hover{
+  border:2px solid red;
+}
+.descripcion:hover p{
+  display: block;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px;
+}
+.descripcion p{
+  display: none; 
+}
+.descripcion:hover button{
+  display: block; 
+}
+.descripcion button{
+  display: none; 
+}
+.cuerpo{
+  background-color: black;
+  display: inline-block;
+  width: 100%;
+  align-content: center;
+}
+hr{
+  width: 100%;
+}
+.ofertas1{
+  color: white;
+  font-size: 50px;
+  vertical-align: top;
+  text-align: center;
+  font-weight: 800;
+}
+.tituloDescripcion{
+  font-size: 20px;
+  font-weight: 900;
+  background-color: rgb(250, 255, 228);
+}
+/*Reservas*/
+.titulo p{
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
+  text-align: center;
+  font-size: 35px;
+  font-family: cursive;
+  font-weight: bold;
+  color: black !important;
+}
+.formularioReservas{
+  padding-top: 3%;
+  padding-bottom: 3%;
+  text-align: center;
+  border: 2px solid orange;
+  border-radius: 50px;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.formularioReserva label{
+  border: 0.5px dotted orangered;
+  text-align: left;
+  font-size: 25px;
+  padding: 0.3%;
+  display: inline-block;
+  height: 30px;
+  width: 35%;
+  padding-bottom: 0.5%;
+  margin: 2px;
+}
+.formularioReserva-error{
+  font-size: 12px;
+  margin-bottom: 0;
+  display: none;
+}
+.formularioReserva-error-activado .formularioReserva-error{
+  display: block;
+  color: red;
+}
+.formularioReserva-grupo-input{
+  font-size: 20px;
+  height: 35px;
+  width: 30%;
+}
+.formularioReserva__grupo-incorrecto .formularioReserva-grupo-input {
+  
+border: 3px solid #bb2929;
+}
+.button{
+  text-align: center;
+  background-color: orangered !important;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-family: cursive;
+  padding: 13px;
+  margin: 3%;
+  font-size: 18px;
+  height:2%;
+}
+span{
+  font-size: 20px;
+}
+
+
+
+
