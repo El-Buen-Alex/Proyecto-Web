@@ -1324,7 +1324,7 @@ hr{
   font-weight: bold;
   color: black !important;
 }
-.formularioReservas{
+.formularioReserva{
   padding-top: 3%;
   padding-bottom: 3%;
   text-align: center;
@@ -1378,6 +1378,10 @@ span{
   font-size: 20px;
 }
 
+.formularioReserva-js{
+  align-items: center;
+  border-color: yellow;
+}
 
 
 
