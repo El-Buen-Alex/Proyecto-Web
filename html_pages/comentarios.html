@@ -47,16 +47,16 @@
             }
             return respuesta;
         }
-        function validarFormulario() {
-            const elementosFormulario = document.querySelectorAll(" .comentario");
-            let estado = true;
-            elementosFormulario.forEach((elemento) => {
-                estado = validar(elemento, elemento.id);
-                if (!estado) {
-                    return;
+        function validarFormulario(){
+            const elementosFormulario=document.querySelectorAll(" .comentario");
+            let estado=true;
+            elementosFormulario.forEach((elemento)=>{
+                const respuesta=validar(elemento, elemento.id);
+                if(!respuesta){
+                    estado=false;
                 }
             })
-            if (estado) {
+            if(estado){
                 agregarComentario();
             }
         }
@@ -218,7 +218,7 @@
                     <div class="grupo elementoFormulario">
                         <input class="elementoFormulario comentario" onkeyup="validar(this, this.id)" type="text"
                             id="tema" required> <span class="barra"></span>
-                        <label class="lblComentario">Tema required</label>
+                        <label class="lblComentario">Tema requiredo</label>
                     </div>
                     <div class="grupo elementoFormulario">
                         <textarea class="elementoFormulario comentario" style="resize: none;margin-top: -10px;"
