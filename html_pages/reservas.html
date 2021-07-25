@@ -9,7 +9,7 @@
     <title>Pizza Mellisos | Reservas</title>
 </head>
 
-<body>
+<body class="fondoNegro">
     <header>
         <div id="nav-placeholder"> </div>
 
@@ -21,14 +21,14 @@
     </header>
 
     <div>
-        <div class="titulo informacion">
+        <div class="tituloPrincipal" style="color:#1c1c1c;  -webkit-text-stroke: 2px white; text-align: center">
             <p>Reserva una mesa</p>
             <p>o Llama al</p>
-            <p>0991719616</p>
+            <p>0980856681</p>
         </div>
     </div>
     <main>
-        <div class="formularioReserva">
+        <div class="formularioReserva" style="background-color: white;" >
             <form name="formularioReserva-js" class="formularioReserva-js" id="formularioReserva-js"
                 onsubmit="return validarformularioReserva(this)">
                 <div class="nombre" id="nombre">
@@ -71,21 +71,23 @@
                     <p class="formularioReserva-error">Ingrese Números del 1 al 10 para reservar su mesa</p>
                 </div>
                 <div>
-                    <label id="establecimiento">Establecimientos:</label><br>
+                    <label id="establecimiento" style="text-align: center;">Establecimiento:</label><br>
                     <div>
-                        <input type="radio" name="lugar" value="matriz"> <span>Matriz: Guayaquil. Francisco Segura entre
+                        <br>
+                        <input type="radio" name="lugar" value="matriz"> <span style="font-size: 16px;">Matriz: Guayaquil. Francisco Segura entre
                             Tulcan y los Rios.</span>
 
-                        <br><br>
+                        <br>
                         <input type="radio" name="lugar" value="sucursal">
-                        <span>Sucursal: Guayaquil. 11Ava entre 4
+                        <span style="font-size: 16px;">Sucursal: Guayaquil. 11Ava entre 4
                             Noviembre y Chembers.</span>
 
                         <br>
                     </div>
                 </div>
+                <br>
                     <div class="botones">
-                        <button class="button" type="submit">Reservar Mesa </button>
+                        <button class="boton fondo" style="width: 20%;">Reservar mesa </button>
                     </div>
             </form>
 
