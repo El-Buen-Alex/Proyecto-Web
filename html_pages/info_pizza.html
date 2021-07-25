@@ -9,6 +9,7 @@
     <meta name="keywords" content="Pizza, Mellisos, Pizzería" />
     <title>Pizza Mellisos | Información</title>
     <link rel="stylesheet" href="../css/estilos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style media="screen">
     </style>
 </head>
@@ -46,7 +47,7 @@
                     </p>
                 </div>
 
-                <div class="imagen1">
+                <div class="imagen1 wow animate__animated animate__lightSpeedInRight">
                     <img class="imagenesInfo" style="width:560px; height: 350px;" src="../resources/pizzamision.jpg"
                         alt="pizza_mision">
                 </div>
@@ -56,7 +57,7 @@
         <div class="moduloVision fondoNegro">
             <div class="cuerpoInfo" style="margin: 0 auto;">
                 <div class="imagen2">
-                    <img class="imagenesInfo" style="width:560px; height: 350px;" src="../resources/pizzavision.jpg"
+                    <img class="imagenesInfo wow animate__animated animate__lightSpeedInLeft" style="width:560px; height: 350px;" src="../resources/pizzavision.jpg"
                         alt="pizza_mision">
                 </div>
 
@@ -89,6 +90,10 @@
                 $("#nav-placeholder").replaceWith(data);
             });</script>
     </footer>
+    <script src="../html_pages/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 
 </body>
 
